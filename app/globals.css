@@ -1,0 +1,387 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Fonts are loaded via next/font/google in app/layout.tsx — no @import needed. */
+
+/* ─── CSS Custom Properties ─────────────────────────────────────────────────── */
+@layer base {
+  :root {
+    /* Brand */
+    --primary: 190 100% 45%;
+    --primary-foreground: 0 0% 0%;
+    --primary-rgb: 0, 200, 232;
+
+    /* Light mode */
+    --background: 210 60% 99%;
+    --foreground: 215 40% 8%;
+    --card: 210 50% 97%;
+    --card-foreground: 215 40% 8%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 40% 8%;
+    --secondary: 210 40% 93%;
+    --secondary-foreground: 215 30% 20%;
+    --muted: 210 30% 92%;
+    --muted-foreground: 215 20% 45%;
+    --accent: 190 100% 45%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 210 30% 88%;
+    --input: 210 30% 88%;
+    --ring: 190 100% 45%;
+    --radius: 0.75rem;
+
+    /* Custom light surfaces */
+    --surface-1: 210 60% 99%;
+    --surface-2: 210 50% 96%;
+    --surface-3: 210 45% 93%;
+    --surface-border: rgba(0, 150, 200, 0.15);
+    --surface-border-hover: rgba(0, 150, 200, 0.35);
+    --glow-color: rgba(0, 200, 232, 0.15);
+    --grid-color: rgba(0, 100, 150, 0.05);
+
+    /* Shadows light */
+    --shadow-card: 0 4px 24px rgba(0, 100, 150, 0.08), 0 1px 0 rgba(255, 255, 255, 0.8);
+    --shadow-glow: 0 0 32px rgba(0, 200, 232, 0.15);
+  }
+
+  .dark {
+    /* Dark mode */
+    --background: 215 60% 3%;
+    --foreground: 210 40% 95%;
+    --card: 215 55% 8%;
+    --card-foreground: 210 40% 95%;
+    --popover: 215 55% 6%;
+    --popover-foreground: 210 40% 95%;
+    --secondary: 215 45% 12%;
+    --secondary-foreground: 210 30% 80%;
+    --muted: 215 40% 14%;
+    --muted-foreground: 215 20% 55%;
+    --accent: 190 100% 45%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 215 40% 14%;
+    --input: 215 40% 14%;
+    --ring: 190 100% 45%;
+
+    /* Custom dark surfaces */
+    --surface-1: 215 60% 3%;
+    --surface-2: 215 55% 8%;
+    --surface-3: 215 50% 12%;
+    --surface-border: rgba(0, 200, 232, 0.12);
+    --surface-border-hover: rgba(0, 200, 232, 0.28);
+    --glow-color: rgba(0, 200, 232, 0.12);
+    --grid-color: rgba(0, 200, 232, 0.04);
+
+    /* Shadows dark */
+    --shadow-card: 0 4px 32px rgba(0, 0, 0, 0.5), 0 1px 0 rgba(255, 255, 255, 0.03);
+    --shadow-glow: 0 0 48px rgba(0, 200, 232, 0.2);
+  }
+}
+
+/* ─── Base Reset & Typography ────────────────────────────────────────────────── */
+@layer base {
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-optical-sizing: auto;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1, "kern" 1;
+    overflow-x: hidden;
+    font-synthesis: none;
+  }
+
+  /* English body font */
+  :lang(en) body,
+  [lang="en"] body {
+    font-family: var(--font-inter), system-ui, sans-serif;
+  }
+
+  /* Arabic body font */
+  :lang(ar) body,
+  [lang="ar"] body,
+  [dir="rtl"] {
+    font-family: var(--font-cairo), system-ui, sans-serif;
+    font-feature-settings: "liga" 1, "calt" 1, "kern" 1;
+    line-height: 1.8;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+    line-height: 1.2;
+    letter-spacing: -0.012em;
+    font-synthesis: none;
+  }
+
+  /* Arabic headings: always Cairo, zero letter-spacing, relaxed line-height */
+  :lang(ar) h1, :lang(ar) h2, :lang(ar) h3,
+  :lang(ar) h4, :lang(ar) h5, :lang(ar) h6,
+  [lang="ar"] h1, [lang="ar"] h2, [lang="ar"] h3,
+  [lang="ar"] h4, [lang="ar"] h5, [lang="ar"] h6,
+  [dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3,
+  [dir="rtl"] h4, [dir="rtl"] h5, [dir="rtl"] h6 {
+    font-family: var(--font-cairo), system-ui, sans-serif;
+    letter-spacing: 0;
+    line-height: 1.5;
+  }
+
+  p {
+    line-height: 1.75;
+  }
+
+  a {
+    @apply text-foreground no-underline;
+    transition: color 0.2s ease;
+  }
+
+  img, video {
+    @apply max-w-full;
+  }
+
+  ::selection {
+    background: rgba(0, 200, 232, 0.25);
+    color: inherit;
+  }
+}
+
+/* ─── Utility Classes ────────────────────────────────────────────────────────── */
+@layer utilities {
+  /* Gradient text */
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #00C8E8 0%, #22D3EE 50%, #00A5C2 100%);
+  }
+
+  .text-gradient-white {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+  }
+
+  /* Glow effects */
+  .glow-primary {
+    box-shadow: 0 0 32px rgba(0, 200, 232, 0.2), 0 0 64px rgba(0, 200, 232, 0.1);
+  }
+
+  .glow-primary-sm {
+    box-shadow: 0 0 16px rgba(0, 200, 232, 0.15);
+  }
+
+  .text-glow {
+    text-shadow: 0 0 24px rgba(0, 200, 232, 0.5);
+  }
+
+  /* Glass effect */
+  .glass {
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background: rgba(var(--primary-rgb), 0.04);
+    border: 1px solid var(--surface-border);
+  }
+
+  .glass-dark {
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    background: rgba(5, 10, 15, 0.7);
+    border: 1px solid rgba(0, 200, 232, 0.12);
+  }
+
+  .glass-light {
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    background: rgba(248, 251, 255, 0.85);
+    border: 1px solid rgba(0, 150, 200, 0.15);
+  }
+
+  /* Grid background */
+  .bg-grid {
+    background-image: var(--tw-gradient-stops);
+    background-size: 64px 64px;
+  }
+
+  /* Noise texture */
+  .noise::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Scrollbar */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 200, 232, 0.3) transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: rgba(0, 200, 232, 0.3);
+    border-radius: 2px;
+  }
+
+  /* Container */
+  .container-wide {
+    @apply max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12;
+  }
+
+  .container-tight {
+    @apply max-w-4xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Section spacing */
+  .section-py {
+    @apply py-20 md:py-28 lg:py-32;
+  }
+
+  .section-py-sm {
+    @apply py-12 md:py-16 lg:py-20;
+  }
+
+  /* Hide scrollbar */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* RTL-aware */
+  .start-auto {
+    inset-inline-start: auto;
+  }
+
+  .end-auto {
+    inset-inline-end: auto;
+  }
+
+  /* Balanced text */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Dots */
+  .dot-pattern {
+    background-image: radial-gradient(circle, rgba(0, 200, 232, 0.12) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+}
+
+/* ─── Arabic Typography Overrides (utilities layer wins over component classes) ─ */
+@layer utilities {
+  /*
+   * These rules live in @layer utilities so their specificity beats Tailwind utility
+   * classes (.font-display, .tracking-tight, etc.) that components apply directly.
+   * [dir="rtl"] .font-display has specificity (0,2,0) vs .font-display's (0,1,0).
+   */
+  [dir="rtl"] h1,
+  [dir="rtl"] h2,
+  [dir="rtl"] h3,
+  [dir="rtl"] h4,
+  [dir="rtl"] h5,
+  [dir="rtl"] h6,
+  [dir="rtl"] .font-display {
+    font-family: var(--font-cairo), system-ui, sans-serif;
+    letter-spacing: 0;
+  }
+
+  [dir="rtl"] h1,
+  [dir="rtl"] h2,
+  [dir="rtl"] h3 {
+    line-height: 1.5;
+  }
+
+  [dir="rtl"] h4,
+  [dir="rtl"] h5,
+  [dir="rtl"] h6 {
+    line-height: 1.6;
+  }
+}
+
+/* ─── Animation Utilities ────────────────────────────────────────────────────── */
+@layer utilities {
+  .animate-in {
+    animation-fill-mode: both;
+  }
+
+  .fade-in {
+    animation: fadeIn 0.5s ease forwards;
+  }
+
+  .slide-in-up {
+    animation: slideInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(32px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* ─── Scrollbar Global ───────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 200, 232, 0.25);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 200, 232, 0.45);
+}
+
+/* ─── Focus Visible ──────────────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid rgba(0, 200, 232, 0.6);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ─── Page Transition Layer ──────────────────────────────────────────────────── */
+.page-transition-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background: rgba(0, 200, 232, 0.05);
+}
