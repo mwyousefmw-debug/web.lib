@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import { Inter, Plus_Jakarta_Sans, Cairo } from "next/font/google";
 import type { Metadata } from "next";
@@ -34,7 +35,11 @@ export const metadata: Metadata = {
 // suppressHydrationWarning on <html> lets next-themes toggle the dark class
 // without a React hydration warning (class differs between server and client).
 // The locale layout sets lang/dir via LocaleHtmlUpdater after hydration.
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html suppressHydrationWarning>
       <body
@@ -42,6 +47,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         suppressHydrationWarning
       >
         {children}
+        <Analytics />
       </body>
     </html>
   );
