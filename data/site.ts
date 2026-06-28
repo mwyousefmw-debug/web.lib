@@ -32,7 +32,7 @@ export const siteConfig = {
   // Template variables: {{from_name}} {{from_email}} {{phone}} {{subject}} {{service}} {{message}}
   emailjs: {
     serviceId: "service_1z128g8",
-    templateId: "template_j6wy8xl",
+    templateId: "template_0ptkfyp",
     publicKey: "qcQdBv16z9VUjFEny",
   },
 };
