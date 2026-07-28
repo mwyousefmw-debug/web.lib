@@ -2,12 +2,12 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { motion, AnimatePresence } from "framer-motion";
-import { Search, BookOpen } from "lucide-react";
+import { AnimatePresence } from "framer-motion";
+import { Search } from "lucide-react";
 import { TutorialCard } from "@/components/cards/TutorialCard";
+import { PromptLibraryCard } from "@/components/cards/PromptLibraryCard";
 import { StaggerContainer } from "@/components/motion/StaggerContainer";
 import { tutorials } from "@/data/tutorials";
-import { fadeUp } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 import type { TutorialCategory, TutorialDifficulty } from "@/types";
 
@@ -51,12 +51,14 @@ export function TutorialsGrid() {
     return matchesSearch && matchesCategory && matchesDifficulty;
   });
 
-  // Grid columns adapt to how many results are visible
+  // Grid columns adapt to how many results are visible (+1 for the
+  // permanent Prompt Library card, which isn't affected by filtering)
+  const visibleCount = filtered.length + 1;
   const gridClass = cn(
     "grid gap-6",
-    filtered.length >= 3
+    visibleCount >= 3
       ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-      : filtered.length === 2
+      : visibleCount === 2
       ? "grid-cols-1 md:grid-cols-2"
       : "grid-cols-1 max-w-sm mx-auto"
   );
@@ -118,24 +120,10 @@ export function TutorialsGrid() {
         )}
 
         {!hasTutorials ? (
-          // Empty state — no tutorials at all
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="flex flex-col items-center justify-center py-32 gap-6"
-          >
-            <div className="w-20 h-20 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center">
-              <BookOpen className="w-10 h-10 text-primary/60" />
-            </div>
-            <div className="text-center">
-              <p className="font-display font-semibold text-xl text-foreground mb-2">
-                {t("empty.title")}
-              </p>
-              <p className="text-muted-foreground">{t("empty.subtitle")}</p>
-            </div>
-          </motion.div>
+          // No downloadable tutorials yet — still surface the Prompt Library
+          <StaggerContainer className={gridClass} staggerChildren={0.08}>
+            <PromptLibraryCard />
+          </StaggerContainer>
         ) : (
           <AnimatePresence mode="wait">
             {filtered.length > 0 ? (
@@ -144,21 +132,20 @@ export function TutorialsGrid() {
                 className={gridClass}
                 staggerChildren={0.08}
               >
+                <PromptLibraryCard />
                 {filtered.map((tutorial) => (
                   <TutorialCard key={tutorial.id} tutorial={tutorial} />
                 ))}
               </StaggerContainer>
             ) : (
-              // No results after filtering
-              <motion.div
+              // No results after filtering — Prompt Library still reachable
+              <StaggerContainer
                 key="no-results"
-                variants={fadeUp}
-                initial="hidden"
-                animate="visible"
-                className="flex flex-col items-center justify-center py-24 gap-4"
+                className={gridClass}
+                staggerChildren={0.08}
               >
-                <p className="text-muted-foreground">{t("empty.subtitle")}</p>
-              </motion.div>
+                <PromptLibraryCard />
+              </StaggerContainer>
             )}
           </AnimatePresence>
         )}

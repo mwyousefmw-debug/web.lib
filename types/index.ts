@@ -59,6 +59,30 @@ export type TutorialCategory =
 
 export type TutorialDifficulty = "beginner" | "intermediate" | "advanced";
 
+// ─── Prompt ───────────────────────────────────────────────────────────────────
+export interface Prompt {
+  id: string;
+  slug: string;
+  title: string;
+  titleAr: string;
+  description: string;
+  descriptionAr: string;
+  category: PromptCategory;
+  difficulty: TutorialDifficulty;
+  tags: string[];
+  aiModels: string[];
+  prompt: string;
+  promptAr: string;
+  featured: boolean;
+}
+
+export type PromptCategory =
+  | "front-end"
+  | "back-end"
+  | "debugging"
+  | "design"
+  | "career";
+
 // ─── Service ──────────────────────────────────────────────────────────────────
 export interface Service {
   id: string;

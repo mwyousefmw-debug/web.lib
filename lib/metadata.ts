@@ -7,6 +7,8 @@ interface MetaProps {
   image?: string;
   noIndex?: boolean;
   locale?: string;
+  /** Locale-relative path (e.g. "/tutorials/prompts/my-slug") used to build the canonical URL. */
+  path?: string;
 }
 
 export function constructMetadata({
@@ -15,6 +17,7 @@ export function constructMetadata({
   image = "/images/projects/logo.jpg",
   noIndex = false,
   locale = "en",
+  path,
 }: MetaProps = {}): Metadata {
   const fullTitle = title
     ? `${title} | ${siteConfig.name}`
@@ -54,6 +57,9 @@ export function constructMetadata({
       description: desc,
       images: [image],
     },
+    alternates: path
+      ? { canonical: `${siteConfig.url}/${locale}${path}` }
+      : undefined,
     robots: {
       index: !noIndex,
       follow: !noIndex,

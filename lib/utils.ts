@@ -61,3 +61,16 @@ export function getInitials(name: string): string {
     .join("")
     .toUpperCase();
 }
+
+export function capitalize(str: string): string {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+/** "front-end" -> "FRONT END" — used for category badge display. */
+export function formatCategoryBadge(category: string): string {
+  return category.replace(/-/g, " ").toUpperCase();
+}
+
+/** Branded focus-visible ring, reused across custom interactive elements. */
+export const focusRing =
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background";

@@ -60,6 +60,11 @@
     "subtitle": "Free tutorials, guides, and resources to help you build better digital products.",
     "viewAll": "Browse All Tutorials",
     "download": "Download",
+    "promptLibrary": {
+      "title": "AI Prompt Library",
+      "description": "100+ ready-to-use AI prompts for programmers — browse, copy, and ship faster.",
+      "cta": "Explore Prompts"
+    },
     "empty": {
       "title": "Tutorials Coming Soon",
       "subtitle": "New tutorials are being prepared. Stay tuned."
@@ -69,6 +74,81 @@
       "search": "Search tutorials...",
       "category": "Category",
       "difficulty": "Difficulty"
+    }
+  },
+  "prompts": {
+    "badge": "100+ AI Prompts",
+    "title": "Prompt Library",
+    "subtitle": "A growing collection of professional, ready-to-use AI prompts for programmers.",
+    "stats": {
+      "prompts": "Prompts",
+      "categories": "Categories",
+      "aiModels": "AI Models",
+      "freeAccess": "Free Access"
+    },
+    "promptBook": {
+      "download": "Download Full PDF",
+      "resources": "Resources"
+    },
+    "search": {
+      "placeholder": "Search prompts..."
+    },
+    "filter": {
+      "all": "All",
+      "showing": "Showing {shown} of {total} prompts",
+      "heading": "Browse Prompts"
+    },
+    "empty": {
+      "title": "No Prompts Found",
+      "subtitle": "Try adjusting your search or filters.",
+      "clearFilters": "Clear Filters"
+    },
+    "pagination": {
+      "prev": "Previous",
+      "next": "Next",
+      "page": "Page {page}"
+    },
+    "copy": "Copy",
+    "view": "View",
+    "favorite": "Add to Favorites",
+    "unfavorite": "Remove from Favorites",
+    "details": {
+      "copyPrompt": "Copy Prompt",
+      "copied": "Copied!",
+      "share": "Share",
+      "shared": "Shared!",
+      "linkCopied": "Link Copied!",
+      "prevPrompt": "Previous Prompt",
+      "nextPrompt": "Next Prompt",
+      "related": "Related Prompts",
+      "openInAi": {
+        "heading": "Open in AI",
+        "action": "Open in {provider}",
+        "opened": "Copied — opening {provider}...",
+        "blocked": "Copied — please allow pop-ups to open {provider}"
+      }
+    },
+    "favorites": {
+      "title": "Favorites",
+      "subtitle": "Your saved prompts, all in one place.",
+      "empty": {
+        "title": "No Favorites Yet",
+        "subtitle": "Tap the heart icon on any prompt to save it here.",
+        "cta": "Browse Prompts"
+      }
+    },
+    "history": {
+      "title": "Copy History",
+      "subtitle": "The last prompts you copied, newest first.",
+      "open": "Open",
+      "empty": {
+        "title": "No Copy History Yet",
+        "subtitle": "Prompts you copy will show up here.",
+        "cta": "Browse Prompts"
+      }
+    },
+    "recentlyViewed": {
+      "title": "Recently Viewed"
     }
   },
   "testimonials": {
