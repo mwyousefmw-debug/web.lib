@@ -152,3 +152,34 @@ export interface StatItem {
   labelKey: string;
   icon: string;
 }
+
+// ─── Security (personal learning page) ────────────────────────────────────────
+export type SecurityIcon = "Lock" | "ShieldCheck" | "Server" | "FlaskConical" | "Shield" | "KeyRound" | "Ban";
+
+export interface SecurityConcept {
+  id: string;
+  icon: SecurityIcon;
+  title: string;
+  titleAr: string;
+  definition: string;
+  definitionAr: string;
+  examples: string[];
+  examplesAr: string[];
+}
+
+export interface SecurityPrinciple {
+  id: string;
+  icon: SecurityIcon;
+  title: string;
+  titleAr: string;
+  description: string;
+  descriptionAr: string;
+}
+
+export interface SecurityStatusItem {
+  id: string;
+  title: string;
+  titleAr: string;
+  status: string;
+  statusAr: string;
+}
