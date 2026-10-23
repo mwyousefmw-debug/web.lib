@@ -9,6 +9,7 @@
     "testimonials": "Testimonials",
     "faq": "FAQ",
     "contact": "Contact",
+    "security": "Security",
     "cta": "Start a Project"
   },
   "hero": {
@@ -164,6 +165,40 @@
     "subtitle": "Tell us about your project and let's create something exceptional together. We're ready when you are.",
     "ctaPrimary": "Start Your Project",
     "ctaSecondary": "See Our Portfolio"
+  },
+  "security": {
+    "eyebrow": "Personal page · Learning notes",
+    "title": "Cybersecurity",
+    "subtitle": "A personal page where I share general cybersecurity concepts, along with the principles I follow to learn responsibly.",
+    "hero": {
+      "line": "Digital awareness starts with the basics",
+      "caption": "General concepts · Responsible learning · Transparency",
+      "diagramLabel": "Illustration of confidentiality, integrity, and availability",
+      "pillars": {
+        "confidentiality": "Confidentiality",
+        "integrity": "Integrity",
+        "availability": "Availability"
+      }
+    },
+    "cia": {
+      "eyebrow": "CIA Triad",
+      "title": "Three Core Principles of Information Security",
+      "subtitle": "Presented here as general, introductory concepts.",
+      "badge": "General concept",
+      "examples": "Illustrative examples"
+    },
+    "principles": {
+      "eyebrow": "Approach",
+      "title": "My Responsible Approach",
+      "subtitle": "General principles I follow while learning."
+    },
+    "status": {
+      "eyebrow": "Transparency",
+      "title": "Where Things Stand",
+      "subtitle": "Future items will be grouped as concepts studied, documented practical work, and topics in progress — each added only with evidence.",
+      "badge": "Not yet",
+      "note": "This page will be updated as documented work is added."
+    }
   },
   "about": {
     "eyebrow": "About Us",

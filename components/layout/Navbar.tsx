@@ -17,6 +17,7 @@ const navLinks = [
   { href: "/tutorials", labelKey: "nav.tutorials" },
   { href: "/testimonials", labelKey: "nav.testimonials" },
   { href: "/faq", labelKey: "nav.faq" },
+  { href: "/security", labelKey: "nav.security" },
   { href: "/contact", labelKey: "nav.contact" },
 ];
 
@@ -120,13 +121,13 @@ export function Navbar() {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center gap-1">
+        <nav className="hidden xl:flex items-center gap-1">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               className={cn(
-                "relative px-3.5 py-2 text-sm font-medium rounded-lg transition-all duration-200",
+                "relative px-3.5 py-2 text-sm font-medium rounded-lg whitespace-nowrap transition-all duration-200",
                 "hover:text-primary hover:bg-primary/5",
                 isActive(link.href)
                   ? "text-primary bg-primary/8"
@@ -208,7 +209,7 @@ export function Navbar() {
           {/* CTA Button */}
           <Link
             href="/contact"
-            className="hidden md:flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-black font-semibold text-sm hover:bg-primary/90 transition-all duration-200 hover:shadow-glow-sm"
+            className="hidden md:flex items-center gap-2 px-4 py-2 rounded-lg whitespace-nowrap bg-primary text-black font-semibold text-sm hover:bg-primary/90 transition-all duration-200 hover:shadow-glow-sm"
           >
             {t("nav.cta")}
           </Link>
@@ -216,7 +217,7 @@ export function Navbar() {
           {/* Mobile Hamburger */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 rounded-lg hover:bg-muted/50 text-muted-foreground hover:text-foreground transition-colors"
+            className="xl:hidden p-2 rounded-lg hover:bg-muted/50 text-muted-foreground hover:text-foreground transition-colors"
             aria-label="Toggle menu"
           >
             <AnimatePresence mode="wait" initial={false}>
@@ -254,7 +255,7 @@ export function Navbar() {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="lg:hidden overflow-hidden border-t border-border/50 bg-background/95 backdrop-blur-xl"
+            className="xl:hidden overflow-hidden border-t border-border/50 bg-background/95 backdrop-blur-xl"
           >
             <nav className="container-wide py-4 flex flex-col gap-1">
               {navLinks.map((link, i) => (
